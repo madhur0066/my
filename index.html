@@ -402,6 +402,7 @@
       }
     }
   </style>
+
 </head>
 <body>
   <div class="bg-animated"></div>
@@ -411,7 +412,7 @@
     <!-- Hero Section -->
     <header class="text-center py-16 relative">
       <div class="glass-effect mx-auto max-w-4xl rounded-3xl p-8 neon-glow">
-        <h1 class="hero-title mb-4">🔥 FF ID STORE 🔥</h1>
+        <h1 class="hero-title mb-4">🔥 FF ID HOUSE 🔥</h1> 
         <p class="text-xl text-gray-300 font-light">Premium Gaming Accounts • Legendary Collections • Instant Delivery</p>
         <div class="mt-8 flex justify-center space-x-4">
           <div class="text-center">
@@ -681,6 +682,85 @@
     // Initialize
     renderProducts();
     renderAllIDs();
+  </script>
+
+
+  <!-- Payment Method Modal -->
+  <div id="paymentOptionsModal" class="fixed inset-0 modal-backdrop flex items-center justify-center z-50 hidden p-4">
+    <div class="modal-content text-white rounded-3xl p-8 max-w-md w-full relative">
+      <button onclick="closePaymentOptions()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+      <h2 class="text-2xl font-bold mb-6 text-center">Choose Payment Method</h2>
+      <div class="grid grid-cols-1 gap-4">
+        <button onclick="showQR('GPay')" class="premium-btn w-full">GPay</button>
+        <button onclick="showQR('PhonePe')" class="premium-btn w-full">PhonePe</button>
+        <button onclick="showQR('Paytm')" class="premium-btn w-full">Paytm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Code Modal -->
+  <div id="qrModal" class="fixed inset-0 modal-backdrop flex items-center justify-center z-50 hidden p-4">
+    <div class="modal-content text-white rounded-3xl p-8 max-w-md w-full relative text-center">
+      <button onclick="closeQRModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+      <h2 class="text-2xl font-bold mb-4" id="paymentMethodTitle"></h2>
+      <img src="qr.jpg" alt="QR Code" class="w-64 h-64 mx-auto rounded-xl shadow-xl border border-white/10">
+      <p class="mt-4 text-gray-300">Scan the QR to pay via your chosen method</p>
+    </div>
+  </div>
+
+  <script>
+    function buyID(id, price) {
+      const product = products.find(p => p.id === id);
+      const modal = document.getElementById("modal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalPrice = document.getElementById("modalPrice");
+      const modalImages = document.getElementById("modalImages");
+      const buyLink = document.getElementById("buyLink");
+
+      modalTitle.innerText = `Elite ID #${id}`;
+      modalPrice.innerHTML = `<span class="price-tag">₹${price}</span>`;
+
+      modalImages.innerHTML = "";
+      product.gallery.forEach((url, index) => {
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = `FF ID ${id}`;
+        img.className = "gallery-img";
+        img.onclick = (e) => {
+          e.stopPropagation();
+          openImageViewer(product.gallery, index);
+        };
+        modalImages.appendChild(img);
+      });
+
+      buyLink.onclick = (e) => {
+        e.preventDefault();
+        closeModal();
+        document.getElementById("paymentOptionsModal").classList.remove("hidden");
+        document.body.style.overflow = 'hidden';
+      };
+
+      modal.classList.remove("hidden");
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePaymentOptions() {
+      document.getElementById("paymentOptionsModal").classList.add("hidden");
+      document.body.style.overflow = 'auto';
+    }
+
+    function showQR(method) {
+      document.getElementById("paymentOptionsModal").classList.add("hidden");
+      const qrModal = document.getElementById("qrModal");
+      document.getElementById("paymentMethodTitle").innerText = `Pay via ${method}`;
+      qrModal.classList.remove("hidden");
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeQRModal() {
+      document.getElementById("qrModal").classList.add("hidden");
+      document.body.style.overflow = 'auto';
+    }
   </script>
 </body>
 </html>
