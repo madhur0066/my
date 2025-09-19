@@ -567,6 +567,7 @@
       const modalPrice = document.getElementById("modalPrice");
       const modalImages = document.getElementById("modalImages");
       const buyLink = document.getElementById("buyLink");
+      document.getElementById("paymentAmount").innerText = `Amount: ₹${price}`;
 
       modalTitle.innerText = `Elite ID #${id}`;
       modalPrice.innerHTML = `<span class="price-tag">₹${price}</span>`;
@@ -584,7 +585,7 @@
         modalImages.appendChild(img);
       });
 
-      buyLink.href = `₹${price}`;
+      buyLink.href = `text=I%20want%20to%20buy%20Free%20Fire%20ID%20${id}%20for%20₹${price}`;
       modal.classList.remove("hidden");
       document.body.style.overflow = 'hidden';
     }
@@ -704,7 +705,19 @@
       <button onclick="closeQRModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
       <h2 class="text-2xl font-bold mb-4" id="paymentMethodTitle"></h2>
       <img src="qr.jpg" alt="QR Code" class="w-64 h-64 mx-auto rounded-xl shadow-xl border border-white/10">
+      <p id="paymentAmount" class="text-lg font-semibold text-red-600 mb-4">Amount: ₹0</p>
       <p class="mt-4 text-gray-300">Scan the QR to pay via your chosen method</p>
+<div id="qrModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 hidden z-50">
+  <div class="bg-white p-6 rounded-2xl shadow-lg w-96 text-center relative">
+    <h3 class="text-xl font-bold mb-4">Scan QR to Pay</h3>
+    <img id="qrImage" src="https://i.ibb.co/8z1xw6t/qr.png" alt="QR Code" class="w-40 h-40 mx-auto mb-4 border-4 border-gray-200 rounded-lg">
+    
+    <!-- Show payment amount -->
+    <p id="paymentAmount" class="text-lg font-semibold text-red-600 mb-4">Amount: ₹0</p>
+
+    <button onclick="closeQRModal()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Close</button>
+  </div>
+</div>
     </div>
   </div>
 
@@ -716,6 +729,7 @@
       const modalPrice = document.getElementById("modalPrice");
       const modalImages = document.getElementById("modalImages");
       const buyLink = document.getElementById("buyLink");
+     document.getElementById("paymentAmount").innerText = `Amount: ₹${price}`;
 
       modalTitle.innerText = `Elite ID #${id}`;
       modalPrice.innerHTML = `<span class="price-tag">₹${price}</span>`;
@@ -764,4 +778,3 @@
   </script>
 </body>
 </html>
-
