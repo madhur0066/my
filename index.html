@@ -435,9 +435,9 @@
     <section class="text-center mt-12 px-4">
       <h2 class="section-title">Choose Your Budget</h2>
       <div class="flex justify-center space-x-4 flex-wrap gap-4">
-        <button class="filter-btn premium-btn" data-range="700">Under ₹700</button>
-        <button class="filter-btn premium-btn" data-range="1000">₹700 - ₹1000</button>
-        <button class="filter-btn premium-btn" data-range="9999">Above ₹1000</button>
+        <button class="filter-btn premium-btn" data-range="1000">Under ₹1000</button>
+        <button class="filter-btn premium-btn" data-range="2000">₹1000 - ₹2000</button>
+         <button class="filter-btn premium-btn" data-range="9999">Above ₹2000</button>
       </div>
     </section>
 
@@ -520,9 +520,9 @@
     function renderProducts(maxPrice = 9999) {
       grid.innerHTML = "";
       const filtered = products.filter(p => {
-        if (maxPrice === 700) return p.price <= 700;
-        if (maxPrice === 1000) return p.price > 700 && p.price <= 1000;
-        if (maxPrice === 9999) return p.price > 1000;
+        if (maxPrice === 1000) return p.price <= 1000;
+        if (maxPrice === 2000) return p.price > 1000 && p.price <= 2000;
+        if (maxPrice === 9999) return p.price > 2000;
       });
       
       filtered.forEach(product => renderCard(grid, product));
@@ -584,7 +584,7 @@
         modalImages.appendChild(img);
       });
 
-      buyLink.href = `https://www.instagram.com/ff_id_house?igsh=MTQ5cHZra2YzNmwyaQ==text=I%20want%20to%20buy%20Free%20Fire%20ID%20${id}%20for%20₹${price}`;
+      buyLink.href = `https://www.instagram.com/ff_id_house?igsh=MTQ5cHZra2YzNmwyaQ=text=I%20want%20to%20buy%20Free%20Fire%20ID%20${id}%20for%20₹${price}`;
 
       // <-- ADDED: lock and show the selected price inside the QR modal
       // This line ensures the chosen amount shows when QR modal opens.
@@ -716,7 +716,7 @@
       <img src="qr.jpg" alt="QR Code" class="w-64 h-64 mx-auto rounded-xl shadow-xl border border-white/10">
 
       <!-- ADDED: clickable line below QR that triggers notification -->
-     <button onclick="alert('Please pay your amount')" 
+     <button onclick="alert('PLEASE PAY YOUR AMOUNT')" 
       class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-2 rounded-lg shadow hover:from-red-500 hover:to-pink-500 transition flex items-center justify-center w-full">
       ➡️ Here Your ID and Password
     </button>
@@ -805,3 +805,4 @@
   </script>
 </body>
 </html>
+
